@@ -9,7 +9,12 @@
   "author": "Austin Jones",
   "license": "MIT",
   "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^5.0.1",
     "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.6",
+    "mongo": "^0.1.0",
     "mongoose": "^5.0.12",
     "passport": "^0.4.0",
     "passport-google-oauth20": "^1.0.0"
