@@ -1,8 +1,8 @@
-<nav class="grey darken-3">
+<nav class="grey darken-3 sidenav-trigger">
   <div class="container">
     <div class="nav-wrapper">
       <!-- left side -->
-      <a href="/stories" class="brand-logo center">Jot It</a>
+      <a href="/" class="brand-logo center">Jot It</a>
       <a href="#" data-activates="main-menu" class="button-collapse show-on-large"><i class="fa fa-bars"></i></a>
       <!-- right side -->
       <ul class="right hide-on-small-only">
@@ -11,6 +11,30 @@
           <li><a href="/auth/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
         {{else}}
           <li><a href="/stories"><i class="fa fa-book"></i> Read Stories</a></li>
+        {{/if}}
+      </ul>
+      <!-- left side menu -->
+      <ul class="sidenav" id="main-menu">
+        {{#if user}}
+        {{else}}
+        <li>
+          <a class="btn red darken-1" href="/auth/google"><i class="fa fa-google left"></i> Login With Google</a>
+        </li>
+        {{/if}}
+        <li>
+          <a href="/stories"><i class="fa fa-book"></i> Read Stories</a>
+        </li>
+        <li class="divider"></li>
+        {{#if user}}
+        <li>
+          <a href="/dashboard"><i class="fa fa-cog"></i> Dashboard</a>
+        </li>
+        <li>
+          <a href="/stories/my"><i class="fa fa-user"></i> My Stories</a>
+        </li>
+        <li>
+          <a href="/auth/logout"><i class="fa fa-sign-out"></i> Logout</a>
+        </li>
         {{/if}}
       </ul>
     </div>

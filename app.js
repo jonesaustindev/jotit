@@ -1,9 +1,11 @@
 const express = require("express");
+const path = require('path');
 const mongoose = require("mongoose");
 const exphbs = require('express-handlebars');
 const passport = require("passport");
 const dotenv = require("dotenv");
 const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 const session = require('express-session');
 
 // store mlab credentials
@@ -11,6 +13,7 @@ dotenv.config();
 
 // models
 require('./models/User');
+require('./models/Story');
 
 // passport config
 require("./config/passport")(passport);
@@ -18,6 +21,7 @@ require("./config/passport")(passport);
 ///// Routes //////
 const auth = require("./routes/auth");
 const index = require("./routes/index");
+const stories = require('./routes/stories');
 
 // adding keys
 const keys = require("./config/keys");
@@ -46,6 +50,10 @@ app.use(session({
   saveUninitialized: false
 }));
 
+// bodyParser middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 // passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
@@ -56,13 +64,21 @@ app.use((req, res, next) => {
   next();
 });
 
+// static folder
+app.use(express.static(path.join(__dirname, 'public')));
 
+// caching disabled for every route
+app.use(function(req, res, next) {
+  res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+  next();
+});
 
 
 
 // use Routes //
 app.use("/auth", auth);
 app.use("/", index);
+app.use('/stories', stories);
 
 
 

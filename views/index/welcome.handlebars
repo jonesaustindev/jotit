@@ -2,5 +2,8 @@
   <h1>Welcome</h1>
   <p>Welcome to Jot It!</p>
   <p>Write and share stories and see what others have written!</p>
-  <a href='/auth/google' class="btn red darken-1"><i class="fa fa-google left"></i>Login With Google</a>
+  {{#unless user}}
+    <a href='/auth/google' class="btn red darken-1"><i class="fa fa-google left"></i>Login With Google</a>
+  {{/unless}}
+
 </div>

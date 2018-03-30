@@ -9,6 +9,7 @@
   "author": "Austin Jones",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
