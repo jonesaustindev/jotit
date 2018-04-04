@@ -10,7 +10,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 
 // store mlab credentials
-dotenv.config();
+// dotenv.config();
 
 // models
 require('./models/User');
