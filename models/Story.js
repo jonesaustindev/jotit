@@ -31,17 +31,17 @@ const StorySchema = new Schema({
       type: Schema.Types.ObjectId,
       // data collection reference users
       ref: 'users'
-    },
-    user: {
-      type: Schema.Types.ObjectId,
-      // data collection reference users
-      ref: 'users'
-    },
-    date: {
-      type: Date,
-      default: Date.now
     }
-  }]
+  }],
+  user: {
+    type: Schema.Types.ObjectId,
+    // data collection reference users
+    ref: 'users'
+  },
+  date: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 // create collection and add schema

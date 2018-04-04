@@ -3,6 +3,7 @@ const path = require('path');
 const mongoose = require("mongoose");
 const exphbs = require('express-handlebars');
 const passport = require("passport");
+const methodOverride = require('method-override');
 const dotenv = require("dotenv");
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
@@ -26,6 +27,15 @@ const stories = require('./routes/stories');
 // adding keys
 const keys = require("./config/keys");
 
+// handlebars helpers
+const {
+  truncate,
+  stripTags,
+  formatDate,
+  select,
+  editIcon
+} = require('./helpers/hbs');
+
 // mongoose promise
 mongoose.Promise = global.Promise;
 // connect mongoose
@@ -38,6 +48,13 @@ const app = express();
 
 // handlebars middleware
 app.engine('handlebars', exphbs({
+  helpers: {
+    truncate: truncate,
+    stripTags: stripTags,
+    formatDate: formatDate,
+    select: select,
+    editIcon: editIcon
+  },
   defaultLayout: 'main'
 }));
 app.set('view engine', 'handlebars');
@@ -53,6 +70,9 @@ app.use(session({
 // bodyParser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+// method override middleware
+app.use(methodOverride('_method'));
 
 // passport middleware
 app.use(passport.initialize());
